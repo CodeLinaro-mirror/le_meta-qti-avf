@@ -1,0 +1,12 @@
+{
+    "vsock_guest_config" : {
+        "major_number": 1,
+        "minor_number": 0,
+        "trustedvm" : {
+            "port" : 3300
+        },
+        "oemvm" : {
+            "port" : 3301
+        }
+    }
+}

@@ -1,0 +1,13 @@
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+[Unit]
+Description= Vsock guest agent
+SourcePath=/usr/bin/vsock_guest_agent
+After=basic.target
+
+[Service]
+ExecStartPre=/bin/sh -c "echo shutdown_lock > /sys/power/wake_lock"
+ExecStart=/usr/bin/vsock_guest_agent
+
+[Install]
+WantedBy=multi-user.target
