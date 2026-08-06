@@ -27,7 +27,7 @@ elapsed=$MIN_WAIT
 logger -t vm-time-sync "Starting host RTC poll (elapsed ${elapsed}s, max ${MAX_WAIT}s)"
 
 while [ $elapsed -lt $MAX_WAIT ]; do
-    rtc_now=$(cat "$RTC_NODE" 2>/dev/null || echo 0)
+    rtc_now=$(timeout 2 cat "$RTC_NODE" 2>/dev/null || echo 0)
     if [ "$rtc_now" -gt "$BUILD_DATE_EPOCH" ]; then
         date -s @${rtc_now} > /dev/null 2>&1
         logger -t vm-time-sync "Synced to host RTC: $(date -Iseconds) (after ${elapsed}s)"
